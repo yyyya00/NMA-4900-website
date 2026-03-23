@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ourchive</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="ourchive.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="site-shell">
+    <header class="hero">
+      <div class="hero-frame no-grid">
+        <p class="system-status">ARCHIVE SYSTEM / MEMORY ACCESS / NMA 4900 SPRING 2026</p>
+
+        <div class="book-scene" aria-label="Animated opening archive book">
+          <div class="book-logo">
+            <div class="book-base-glow"></div>
+
+            <div class="book-spine"></div>
+            <div class="book-cover left"></div>
+            <div class="book-cover right"></div>
+
+            <div class="book-core-light"></div>
+
+            <div class="page-rays" aria-hidden="true">
+              <span class="ray r1"></span>
+              <span class="ray r2"></span>
+              <span class="ray r3"></span>
+              <span class="ray r4"></span>
+              <span class="ray r5"></span>
+              <span class="ray r6"></span>
+              <span class="ray r7"></span>
+              <span class="ray r8"></span>
+              <span class="ray r9"></span>
+            </div>
+
+            <div class="particles" aria-hidden="true">
+              <span class="particle p1"></span>
+              <span class="particle p2"></span>
+              <span class="particle p3"></span>
+              <span class="particle p4"></span>
+              <span class="particle p5"></span>
+              <span class="particle p6"></span>
+              <span class="particle p7"></span>
+              <span class="particle p8"></span>
+            </div>
+
+            <div class="title-projection">
+              <div class="title-panel">
+                <span class="title-main">OURCHIVE</span>
+                <span class="title-sub">retro memory interface</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="hero-note">
+          A retro-tech archive where interphase and interface are reactivated.
+        </p>
+
+        <a href="#main-content" class="enter-scroll">ENTER ARCHIVE ↓</a>
+      </div>
+    </header>
+
+    <main class="main-layout content-section" id="main-content">
+      <section class="retro-window">
+        <div class="window-topbar">
+          <div class="window-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="window-name">OURCHIVE.EXE</div>
+          <div class="window-code">ID: 02 / ACTIVE</div>
+        </div>
+
+        <div class="window-meta">
+          <span>SPRING 2026 EXHIBITION</span>
+          <span>MEMORY / SYSTEM / ARCHIVE</span>
+          <span>2 FLOORS ONLINE</span>
+        </div>
+
+        <div class="window-content">
+          <div class="content-scroll">
+            <section class="content-block">
+              <p class="micro-label">[ HOME ]</p>
+              <h2>Ourchive</h2>
+              <p>
+                Ourchive explores memory as something stored, translated, and reactivated through systems.
+                The exhibition moves between personal traces and digital structures, asking how archives are shaped
+                by screens, interfaces, transitions, and acts of retrieval.
+              </p>
+            </section>
+
+            <section class="content-block" id="interphase">
+              <p class="micro-label">[ FLOOR X ]</p>
+              <h2>Interphases</h2>
+              <p>
+                Interphases focuses on states of transition, internal shifts, and in-between conditions.
+                This floor can hold works about memory, emotion, atmosphere, latency, and becoming—spaces where
+                experience feels less fixed and more fluid, layered, and unstable.
+              </p>
+            </section>
+
+            <section class="content-block" id="interfaces">
+              <p class="micro-label">[ FLOOR X ]</p>
+              <h2>Interfaces</h2>
+              <p>
+                Interfaces centers on contact zones: screens, systems, surfaces, and points of exchange.
+                This floor can frame works around mediation, visibility, access, control, and technological form—
+                where memory becomes navigable, clickable, translated, and displayed.
+              </p>
+            </section>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="continue-section hidden-reveal" id="continueSection">
+        <button class="continue-btn" id="continueBtn">CONTINUE</button>
+
+      <div class="folder-area folder-hidden" id="floor-nav">
+        <a href="interphase.html" class="folder-link">
+        <div class="folder-icon">
+         <div class="folder-tab"></div>
+          <div class="folder-body"></div>
+          <div class="folder-line line-1"></div>
+          <div class="folder-line line-2"></div>
+        </div>
+        <span class="folder-text">INTERPHASE</span>
+      </a>
+
+      <a href="interface.html" class="folder-link">
+        <div class="folder-icon">
+          <div class="folder-tab"></div>
+          <div class="folder-body"></div>
+          <div class="folder-line line-1"></div>
+          <div class="folder-line line-2"></div>
+        </div>
+        <span class="folder-text">INTERFACE</span>
+        </a>
+    </div>
+    </section>
+
+      <footer class="contact-section">
+        <div class="contact-panel">
+          <p class="micro-label">[ CONTACT / INFO ]</p>
+          <h3>Contact Us</h3>
+          <p>
+            Add location, dates, hours, contact email, and any additional exhibition information here.
+          </p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <<script>
+  const continueSection = document.getElementById("continueSection");
+  const triggerSection = document.getElementById("interfaces");
+  const continueBtn = document.getElementById("continueBtn");
+  const folderNav = document.getElementById("floor-nav");
+
+  function revealContinueSection() {
+    if (!triggerSection) return;
+
+    const triggerBottom = triggerSection.getBoundingClientRect().bottom;
+    const triggerPoint = window.innerHeight * 0.88;
+
+    if (triggerBottom <= triggerPoint) {
+      continueSection.classList.add("show");
+    }
+  }
+
+  continueBtn.addEventListener("click", () => {
+    folderNav.classList.add("show");
+    continueBtn.style.display = "none";
+  });
+
+  window.addEventListener("scroll", revealContinueSection);
+  window.addEventListener("load", revealContinueSection);
+</script>
+</body>
+</html>
