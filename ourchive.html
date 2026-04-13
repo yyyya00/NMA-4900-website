@@ -20,39 +20,63 @@
       <div class="hero-frame">
         <h1 class="system-status">OURCHIVE SYSTEM / MEMORY ACCESS / SPRING 2026</h1>
 
-        <div class="compass-scene" aria-label="Ourchive navigation logo">
+        <div class="compass-scene">
           <div class="compass-logo">
-
-            <a href="interphase.html" class="arc-link arc-top" aria-label="Go to Interphases page">
-              <span>I</span><span>N</span><span>T</span><span>E</span><span>R</span><span>P</span><span>H</span><span>A</span><span>S</span><span>E</span><span>S</span>
-            </a>
-
-            <a href="interfaces.html" class="arc-link arc-bottom" aria-label="Go to Interfaces page">
-              <span>I</span><span>N</span><span>T</span><span>E</span><span>R</span><span>F</span><span>A</span><span>C</span><span>E</span><span>S</span>
-            </a>
-
             <div class="orb-core">
-              <div class="compass-needle-wrap" aria-hidden="true">
+
+              <img src="ourchive word.png" class="orb-wordmark-img" />
+
+              <a href="interfaces.html" class="corner-link top-left">
+                <img src="ourchive interface.png" class="corner-img interface-img"/>
+              </a>
+
+              <a href="interphase.html" class="corner-link bottom-right">
+                <img src="ourchive interphase.png" class="corner-img interphase-img"/>
+              </a>
+
+              <div class="compass-needle-wrap">
                 <div class="compass-needle"></div>
                 <div class="compass-needle-center"></div>
               </div>
-              
-              <div class="orb-title" aria-label="Ourchive title">
-                <span>O</span>
-                <span>U</span>
-                <span>R</span>
-                <span>C</span>
-                <span>H</span>
-                <span>I</span>
-                <span>V</span>
-                <span>E</span>
-              </div>
-            </div>
 
+            </div>
           </div>
         </div>
       </div>
     </header>
   </main>
+
+  <!-- 🔥 SCRIPT -->
+  <script>
+    const needle = document.querySelector('.compass-needle');
+    const orb = document.querySelector('.orb-core');
+
+    let currentAngle = 0;
+    let targetAngle = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = orb.getBoundingClientRect();
+
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const dx = e.clientX - centerX;
+      const dy = e.clientY - centerY;
+
+      targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+    });
+
+    function animate() {
+      currentAngle += (targetAngle - currentAngle) * 0.08;
+
+      needle.style.transform =
+        `translate(-50%, -50%) rotate(${currentAngle}deg)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+
 </body>
 </html>
