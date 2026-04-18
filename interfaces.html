@@ -21,21 +21,27 @@
       </div>
     </div>
 
-    <header class="subpage-header">
+    <header class="subpage-header" id="floorHeader">
       <p class="subpage-label">FLOOR 02</p>
       <h1 class="subpage-title">INTERFACES</h1>
     </header>
 
-    <section class="floor-description-box interface-description">
-      <p>“Interfaces” meshes extrospective works that showcase the interactions between the self and various environments, focusing on the systems and connections that shape our experiences. Each work in this section examines how individuals engage with external worlds, including technology, the physical environment, and broader social realities. For example, Jesette Alveza’s X Marks the Spot uses an interactive digital map to explore memory and personal geography. Ethan Koros’s A Little Bit Board engages with the physical environment by transforming urban spaces into sites of movement and reinterpretation. Kianna Adams’s He Told Me The Violets Were Poisonous reflects on social realities, examining queer identity, visibility, and the pressures that shape personal expression. Together, these works reveal how the self is continuously shaped through interaction with the surrounding world.
+    <section class="floor-description-box interface-description" id="floorDescription">
+      <p>"Interfaces" meshes extrospective works that showcase the interactions between the self and various environments, focusing on the systems and connections that shape our experiences. Each work in this section examines how individuals engage with external worlds, including technology, the physical environment, and broader social realities. For example, Jesette Alveza's X Marks the Spot uses an interactive digital map to explore memory and personal geography. Ethan Koros's A Little Bit Board engages with the physical environment by transforming urban spaces into sites of movement and reinterpretation. Kianna Adams's He Told Me The Violets Were Poisonous reflects on social realities, examining queer identity, visibility, and the pressures that shape personal expression. Together, these works reveal how the self is continuously shaped through interaction with the surrounding world.
       </p>
     </section>
 
     <div class="retro-body collage-mode" id="retroBody">
       <aside class="retro-sidebar">
-        <div class="retro-panel profile-box">
-          <div class="profile-name">NMA 4900</div>
-          <div class="profile-handle">@NMA4900</div>
+        <div class="artist-page-logo-wrap" id="artistPageLogo">
+          <a href="ourchive.html">
+            <img src="logo.png" alt="Ourchive Logo" class="artist-page-logo">
+          </a>
+        </div>
+
+        <div class="retro-panel profile-box" id="contextBox">
+          <div class="profile-name" id="contextTitle">NMA 4900</div>
+          <div class="profile-handle" id="contextSubtitle">Interfaces</div>
         </div>
 
         <div class="retro-panel artist-list-panel">
@@ -150,11 +156,17 @@
             data-name="JUMAANE MILLETTE"
             data-floor="interfaces"
             data-page="interfaces.html"
-            data-work="Artwork Title"
-            data-media="image"
-            data-src="https://via.placeholder.com/900x540.png?text=Artwork"
-            data-thumb="https://via.placeholder.com/300x300.png?text=Jumaane+Millette"
-            data-desc="Short description for Jumaane Millette's work in Interfaces.">
+            data-work="Untile We Make"
+            data-media="video"
+            data-src="https://player.vimeo.com/video/1182717444"
+            data-thumb="jumaane.png"
+            data-desc="About the Work
+
+            In the mixed media film until We make It by Jumaane Millette explores the pervasive influence of modern society's working culture and its impact on the American working class. Millette delves into the phenomenon of &quot;workaholism&quot;, exploring how it has seeped into everyday life through recognizable artifacts that are overlooked in an average American's daily routine. The work serves as a cautionary tale against the glorified idealization of the phrase &quot;working hard until we make it&quot;, suggesting that ideals of diligent perseverance and continuous efforts is a flawed dream. Millette argues that these ideals are instead products of a societal climate that has been long sold to the masses. Over time, these ideas have been transformed to become our core personal values, even though it is known that such a lifestyle is rarely rewarded. Millette provides an opening for the viewer to question whether the price to gamble one's time and dreams is worth the price of grinding away one's physical and psychological health.
+
+            About the Artist
+
+            Jumaane Millette, born in Brooklyn, NY, is an Advertising &amp; Marketing Communications major at Baruch College, minoring in both Leadership &amp; Teams and New Media Arts. Millette's multidisciplinary practice across journalism, photography, and videography allows him to explore the world through his own lens. By blending narrative storytelling and visual art, Millette creates worlds that immerse and challenge viewers to see the contemporary reality through his unique perspective.">
             JUMAANE MILLETTE
           </button>
 
@@ -213,6 +225,12 @@
       </aside>
 
       <main class="retro-content">
+        <div class="retro-breadcrumbs">
+          <a href="ourchive.html" class="crumb-card">Home<br><span>Main Page</span></a>
+          <a href="interfaces.html" class="crumb-card">Interfaces<br><span>Floor 02</span></a>
+          <a href="interphase.html" class="crumb-card">Interphases<br><span>Floor 03</span></a>
+        </div>
+
         <div class="retro-search-wrap">
           <div class="retro-search-row">
             <input type="text" class="retro-search" id="globalSearch" placeholder="Search files, teams, or people..." autocomplete="off" />
@@ -223,12 +241,6 @@
           <div class="search-results hidden" id="searchResults"></div>
         </div>
 
-        <div class="retro-breadcrumbs">
-          <a href="ourchive.html" class="crumb-card">Home<br><span>Main Page</span></a>
-          <a href="interfaces.html" class="crumb-card">Interfaces<br><span>Floor 02</span></a>
-          <a href="interphase.html" class="crumb-card">Interphases<br><span>Floor 03</span></a>
-        </div>
-
         <section class="viewer-collage" id="viewerCollage">
           <div class="viewer-collage-grid" id="viewerCollageGrid"></div>
         </section>
@@ -237,10 +249,10 @@
           <h1 id="artistName">Artist Name</h1>
           <h2 id="artworkName">Artwork Name</h2>
 
-          <div class="viewer-layout">
+          <div class="viewer-layout" style="grid-template-columns: 1fr;">
             <div class="viewer-media" id="viewerMedia"></div>
-            <div class="viewer-text">
-              <p id="artistDesc"></p>
+            <div class="viewer-text-bottom">
+              <div id="artistDescBottom"></div>
             </div>
           </div>
         </section>
@@ -256,10 +268,12 @@
     const viewerPanel = document.getElementById('viewerPanel');
     const artistName = document.getElementById('artistName');
     const artworkName = document.getElementById('artworkName');
-    const artistDesc = document.getElementById('artistDesc');
+    const artistDescBottom = document.getElementById('artistDescBottom');
     const viewerMedia = document.getElementById('viewerMedia');
     const globalSearch = document.getElementById('globalSearch');
     const searchResults = document.getElementById('searchResults');
+    const floorHeader = document.getElementById('floorHeader');
+    const floorDescription = document.getElementById('floorDescription');
 
     const allStudents = [
       { name: 'KIANNA ADAMS', slug: 'kianna-adams', page: 'interfaces.html', floor: 'Interfaces / Floor 01' },
@@ -290,15 +304,23 @@
     ];
 
     function normalizeText(text) {
-      return text
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
+      return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function setFloorViewContext() {
+      document.body.classList.remove('artist-open');
+      floorHeader.classList.remove('hidden');
+      floorDescription.classList.remove('hidden');
+    }
+
+    function setArtistViewContext() {
+      document.body.classList.add('artist-open');
+      floorHeader.classList.add('hidden');
+      floorDescription.classList.add('hidden');
     }
 
     function renderMainCollage() {
       viewerCollageGrid.innerHTML = '';
-
       artistButtons.forEach(button => {
         const card = document.createElement('button');
         card.className = 'artist-card';
@@ -309,42 +331,67 @@
           </div>
           <div class="artist-card-name">${button.dataset.name}</div>
         `;
-
-        card.addEventListener('click', () => {
-          renderArtist(button);
-        });
-
+        card.addEventListener('click', () => { renderArtist(button); });
         viewerCollageGrid.appendChild(card);
       });
+    }
+
+    function parseDesc(desc) {
+      // Split on one or more blank lines
+      const rawParts = desc.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+      const parts = [];
+      rawParts.forEach(part => {
+        // Also split if a heading keyword appears after a single newline mid-block
+        const lines = part.split('\n').map(l => l.trim()).filter(Boolean);
+        let buffer = [];
+        lines.forEach(line => {
+          const low = line.toLowerCase();
+          if (low === 'about the work' || low === 'about the artist') {
+            if (buffer.length) { parts.push(buffer.join(' ')); buffer = []; }
+            parts.push(line);
+          } else {
+            buffer.push(line);
+          }
+        });
+        if (buffer.length) parts.push(buffer.join(' '));
+      });
+      return parts;
     }
 
     function renderArtist(button) {
       artistButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
-      const name = button.dataset.name;
-      const work = button.dataset.work;
+      const name  = button.dataset.name;
+      const work  = button.dataset.work;
       const media = button.dataset.media;
-      const src = button.dataset.src;
-      const desc = button.dataset.desc;
+      const src   = button.dataset.src;
+      const desc  = button.dataset.desc || '';
 
-      artistName.textContent = name;
+      setArtistViewContext();
+      artistName.textContent  = name;
       artworkName.textContent = work;
-      artistDesc.textContent = desc;
-      viewerMedia.innerHTML = '';
 
+      const parts = parseDesc(desc);
+      artistDescBottom.innerHTML = parts.map(part => {
+        const lower = part.toLowerCase().trim();
+        if (lower === 'about the work' || lower === 'about the artist') {
+          return `<h3>${part}</h3>`;
+        }
+        return `<p>${part}</p>`;
+      }).join('');
+
+      viewerMedia.innerHTML = '';
       if (media === 'video') {
         viewerMedia.innerHTML = `
           <div class="media-frame">
             <iframe src="${src}" title="${work}" frameborder="0" allowfullscreen></iframe>
-          </div>
-        `;
+          </div>`;
       } else {
         viewerMedia.innerHTML = `
           <div class="media-frame">
             <img src="${src}" alt="${work}">
-          </div>
-        `;
+          </div>`;
       }
 
       viewerCollage.classList.add('hidden');
@@ -353,32 +400,26 @@
     }
 
     function findLocalArtistBySlug(slug) {
-      return Array.from(artistButtons).find(button => button.dataset.slug === slug);
+      return Array.from(artistButtons).find(b => b.dataset.slug === slug);
     }
 
     function openArtistFromUrlIfNeeded() {
       const params = new URLSearchParams(window.location.search);
       const artistSlug = params.get('artist');
-
-      if (!artistSlug) return;
-
+      if (!artistSlug) { setFloorViewContext(); return; }
       const targetArtist = findLocalArtistBySlug(artistSlug);
-      if (targetArtist) {
-        renderArtist(targetArtist);
-      }
+      if (targetArtist) renderArtist(targetArtist);
     }
 
     function highlightMatchingCards(query) {
-      const normalizedQuery = normalizeText(query);
-
+      const nq = normalizeText(query);
       document.querySelectorAll('.artist-card').forEach(card => {
-        const cardName = normalizeText(card.querySelector('.artist-card-name').textContent);
-        card.classList.toggle('is-highlighted', normalizedQuery && cardName.includes(normalizedQuery));
+        const cn = normalizeText(card.querySelector('.artist-card-name').textContent);
+        card.classList.toggle('is-highlighted', nq && cn.includes(nq));
       });
-
       artistButtons.forEach(button => {
-        const matches = normalizeText(button.dataset.name).includes(normalizedQuery);
-        button.classList.toggle('is-highlighted', normalizedQuery && matches);
+        const matches = normalizeText(button.dataset.name).includes(nq);
+        button.classList.toggle('is-highlighted', nq && matches);
       });
     }
 
@@ -398,100 +439,67 @@
         searchResults.classList.remove('hidden');
         return;
       }
-
       searchResults.innerHTML = matches.map((student, index) => `
         <button class="search-result-item ${index === 0 ? 'active' : ''}"
-          data-page="${student.page}"
-          data-slug="${student.slug}">
+          data-page="${student.page}" data-slug="${student.slug}">
           <span class="search-result-name">${student.name}</span>
           <span class="search-result-meta">${student.floor}</span>
         </button>
       `).join('');
-
       searchResults.classList.remove('hidden');
-
       searchResults.querySelectorAll('.search-result-item').forEach(item => {
         item.addEventListener('click', () => {
-          goToStudent({
-            page: item.dataset.page,
-            slug: item.dataset.slug
-          });
+          goToStudent({ page: item.dataset.page, slug: item.dataset.slug });
         });
       });
     }
 
     function searchStudents(query) {
       const cleanQuery = normalizeText(query.trim());
-
-      if (!cleanQuery) {
-        clearSearchResults();
-        return;
-      }
-
-      const matches = allStudents.filter(student =>
-        normalizeText(student.name).includes(cleanQuery)
-      );
-
+      if (!cleanQuery) { clearSearchResults(); return; }
+      const matches = allStudents.filter(s => normalizeText(s.name).includes(cleanQuery));
       renderSearchResults(matches);
       highlightMatchingCards(query);
     }
 
-    globalSearch.addEventListener('input', (event) => {
-      searchStudents(event.target.value);
-    });
+    globalSearch.addEventListener('input', e => searchStudents(e.target.value));
 
-    globalSearch.addEventListener('keydown', (event) => {
+    globalSearch.addEventListener('keydown', event => {
       const items = Array.from(searchResults.querySelectorAll('.search-result-item'));
       const activeItem = searchResults.querySelector('.search-result-item.active');
-      let currentIndex = items.indexOf(activeItem);
-
+      let idx = items.indexOf(activeItem);
       if (event.key === 'ArrowDown') {
         event.preventDefault();
         if (!items.length) return;
-        currentIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
-        items.forEach(item => item.classList.remove('active'));
-        items[currentIndex].classList.add('active');
+        idx = idx < items.length - 1 ? idx + 1 : 0;
+        items.forEach(i => i.classList.remove('active'));
+        items[idx].classList.add('active');
       }
-
       if (event.key === 'ArrowUp') {
         event.preventDefault();
         if (!items.length) return;
-        currentIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
-        items.forEach(item => item.classList.remove('active'));
-        items[currentIndex].classList.add('active');
+        idx = idx > 0 ? idx - 1 : items.length - 1;
+        items.forEach(i => i.classList.remove('active'));
+        items[idx].classList.add('active');
       }
-
       if (event.key === 'Enter') {
         event.preventDefault();
         const chosen = searchResults.querySelector('.search-result-item.active');
-        if (chosen) {
-          goToStudent({
-            page: chosen.dataset.page,
-            slug: chosen.dataset.slug
-          });
-        }
+        if (chosen) goToStudent({ page: chosen.dataset.page, slug: chosen.dataset.slug });
       }
-
-      if (event.key === 'Escape') {
-        clearSearchResults();
-        globalSearch.blur();
-      }
+      if (event.key === 'Escape') { clearSearchResults(); globalSearch.blur(); }
     });
 
-    document.addEventListener('click', (event) => {
-      const clickedInsideSearch = event.target.closest('.retro-search-wrap');
-      if (!clickedInsideSearch) {
-        clearSearchResults();
-      }
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.retro-search-wrap')) clearSearchResults();
     });
 
     artistButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        renderArtist(button);
-      });
+      button.addEventListener('click', () => renderArtist(button));
     });
 
     renderMainCollage();
+    setFloorViewContext();
     openArtistFromUrlIfNeeded();
   </script>
 </body>
