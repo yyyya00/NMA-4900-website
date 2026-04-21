@@ -2682,22 +2682,18 @@ h1 {
 
 /* ----- Final interphase artist page refinement ----- */
 .artist-page-logo-wrap {
-  display: none;
-}
-
-.artist-page-logo {
-  display: block;
-  width: 86px;
-  height: auto;
-}
-
-body.artist-open .artist-page-logo-wrap {
   display: block;
   margin: 10px 0 6px 14px;
 }
 
+.artist-page-logo {
+  display: block;
+  width: 140px;
+  height: auto;
+}
+
 body.artist-open .artist-page-logo {
-  width: 110px;
+  width: 140px;
 }
 
 body.artist-open .title-logo {
