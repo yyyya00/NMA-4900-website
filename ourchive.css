@@ -627,7 +627,7 @@ h1 {
 
 /* ---------- RESPONSIVE HERO ---------- */
 
-@media (min-width: 300px) {
+@media (min-width: 300px) {}
   
 @media (max-width: 600px) {
   
@@ -1977,7 +1977,7 @@ h1 {
 
 /* ---------- RESPONSIVE HERO ---------- */
 
-@media (min-width: 300px) {
+@media (min-width: 300px) {}
   
 @media (max-width: 600px) {
   
@@ -2786,4 +2786,17 @@ details summary::after {
 
 details[open]>summary::after {
   content: "\23F7";
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
