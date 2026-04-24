@@ -2774,3 +2774,16 @@ body.artist-open .viewer-panel {
     padding-left: 10px;
   }
 }
+
+details summary {
+  cursor: pointer;
+}
+
+details summary::after {
+  content: "\23F5";
+  margin-left: 0.5rem;
+}
+
+details[open]>summary::after {
+  content: "\23F7";
+}

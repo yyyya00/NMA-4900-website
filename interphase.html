@@ -480,12 +480,12 @@
           const thLines = thRaw ? thRaw.split('|') : [];
           const enLines = enRaw ? enRaw.split('|') : [];
           const esLines = esRaw ? esRaw.split('|') : [];
-          const transcriptEl = document.createElement('div');
+          const transcriptEl = document.createElement('details');
           transcriptEl.className = 'sira-transcript';
           transcriptEl.innerHTML = `
-            <div class="transcript-header">
+            <summary class="transcript-header">
               <h3 class="transcript-title">Transcript</h3>
-            </div>
+            </summary>
             <div class="transcript-body both-mode">
               ${thLines.length ? `
               <div class="transcript-col">
@@ -710,7 +710,7 @@
     .media-alt-text { font-size: 13px; color: #575757; font-style: italic; margin: 10px 0 0 0; line-height: 1.5; }
 
     .sira-transcript { margin-top: 2rem; border-top: 1px solid #ccc; padding-top: 1.5rem; font-family: "ff-info-display-web-pro", sans-serif; }
-    .transcript-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .transcript-header { display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
     .transcript-title { font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin: 0; }
     .transcript-lang-tabs { display: flex; gap: 0.4rem; }
     .lang-tab { background: transparent; border: 1px solid #999; padding: 4px 12px; font-size: 0.8rem; cursor: pointer; font-family: inherit; transition: background 0.15s, color 0.15s; }
