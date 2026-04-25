@@ -53,7 +53,7 @@
             data-name="A woman seated at a bar turns to look at a creature beside her. The creature, equiped with a man's body and a deer's head, leans on the bar table and stares aloofly."
             data-floor="interfaces"
             data-page="interfaces.html"
-            data-work="Artwork Title"
+            data-work="He Told ME The Violets Were Poisonous"
             data-media="video"
             data-duration="01:11"
             data-src="https://player.vimeo.com/video/1182708574?fl=pl&fe=sh"
@@ -78,13 +78,14 @@
             data-slug="jesette-alveza"
             data-label="JESETTE ALVEZA"
             data-name="Thumbnail image for Jesette Alveza"
-            data-alt="Stylized map in green and blue tones with the text 'X Marks the Spot' and a gray button labeled 'Explore,'' conveying adventure and curiosity."
             data-floor="interfaces"
             data-page="interfaces.html"
             data-work="X Marks the Spot"
-            data-media="Website"
-            data-src="https://via.placeholder.com/900x540.png?text=Artwork"
-            data-audio-desc="A stylized map with green and blue areas is overlaid with the bold text &quot; X Marks the Spot. &quot;Below is a button labeled&quot; Explore.&quot;"
+            data-media="canva"
+            data-src="https://www.canva.com/design/DAHDVjh3D_o/LND6lEFUQsXXyCT22EtGjA/view?embed"
+            data-canva-link="https://www.canva.com/design/DAHDVjh3D_o/LND6lEFUQsXXyCT22EtGjA/view?utm_content=DAHDVjh3D_o&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
+            data-walkthrough-src="https://player.vimeo.com/video/"
+            data-audio-desc="The audio describes the navigation through the &quot;X Marks the Spot&quot; website. Scrolling through the clickable icons allows viewers to enter and explore maps of different neighborhoods and corresponding memories tied to each location. Within each map is a playable audio walking guide taking listeners on a journey that reveal personal stories through time and space."
             data-thumb="jesette.png"
             data-desc="About the Work
             Jesette Alveza’s <em> X Marks the Spot</em> is an interactive website exploring themes of nostalgia, memory, and personal geography. Using a digital map, the project invites viewers to uncover stories connected to meaningful locations in people’s lives. Echoing the phrase “X marks the spot,” the work frames memory as a form of hidden treasure, discoverable through exploration and careful engagement.
@@ -134,7 +135,8 @@
             data-media="iframe"
             data-src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=1ebbd3b6-3f50-11f1-ba1b-0e6f42328d7d"
             data-thumb="ivan.png"
-            data-alt="Runic letters inscripted onto rocks hidden by a dark layer to shroud the piece in mystery."
+            data-alt-left="Runic letters are inscripted onto a floating rock that uphold the magic in this &quot;world.&quot; Colossal roots native to this planet stretch beyond the sky in the distance. Cliffs overhang from the left and right."
+            data-alt-right="The same runic letters inscribed on an obelisk uphold this world. A vast sea of stars and a planet can be seen in the sky. A smooth sandy shore rests at the bottom of the scene."
             data-desc="
             About the Work
             
@@ -254,7 +256,7 @@
             data-name="Person in bathtub in a red lit room drinking from a mug. Title reads 'until We make It'"
             data-floor="interfaces"
             data-page="interfaces.html"
-            data-work="untile We make it"
+            data-work="until We make It"
             data-media="video"
             data-duration="03:22"
             data-src="https://player.vimeo.com/video/1182717444"
@@ -529,7 +531,7 @@
       artworkName.textContent = work;
       artistName.textContent = 'by ' + name;
       const duration = button.dataset.duration || '';
-      const mediaLabel = media === 'video' ? 'Video' : media === 'image' ? 'Image' : media === 'iframe' ? 'Interactive' : media || '';
+      const mediaLabel = media === 'video' ? 'Video' : media === 'image' ? 'Image' : media === 'iframe' ? 'Image' : media === 'canva' ? 'Interactive Website' : media || '';
       const metaParts = [mediaLabel, duration].filter(Boolean);
       document.getElementById('artworkMeta').textContent = metaParts.join(' | ');
 
@@ -543,16 +545,84 @@
       }).join('');
 
       viewerMedia.innerHTML = '';
-      if (media === 'video') {
+
+      if (media === 'canva') {
+        const walkthroughSrc = button.dataset.walkthroughSrc || '';
+        const canvaLink = button.dataset.canvaLink || src;
+
+        viewerMedia.innerHTML = `
+          <div class="canva-toggle-bar" role="group" aria-label="View switcher">
+            <button class="canva-toggle-btn active" id="btnCanva" aria-pressed="true">Website</button>
+            <button class="canva-toggle-btn" id="btnWalkthrough" aria-pressed="false">Walkthrough with Audio Description</button>
+          </div>
+
+          <div id="canvaPanel">
+            <span class="visually-hidden">This project is built in Canva and is not screen reader accessible. A video walkthrough with audio description is provided below.</span>
+            <div class="canva-scroll-box">
+              <iframe loading="lazy"
+                src="${src}"
+                allowfullscreen
+                allow="fullscreen"
+                title="${work} — Canva website by Jesette Alveza">
+              </iframe>
+            </div>
+          </div>
+
+          <div id="walkthroughPanel" class="hidden">
+            <h3 class="walkthrough-heading">Walkthrough with Audio Description</h3>
+            ${walkthroughSrc
+              ? `<div class="media-frame"><iframe src="${walkthroughSrc}" title="Walkthrough with audio description of ${work}" frameborder="0" allowfullscreen></iframe></div>`
+              : `<p class="walkthrough-placeholder"><em>Video walkthrough coming soon.</em></p>`
+            }
+            ${button.dataset.audioDesc ? `
+            <div class="audio-desc-block">
+              <p class="audio-desc-label">Description of Audio</p>
+              <p class="audio-desc-text">${button.dataset.audioDesc}</p>
+            </div>` : ''}
+          </div>
+        `;
+
+        // Toggle logic
+        const btnCanva = viewerMedia.querySelector('#btnCanva');
+        const btnWalkthrough = viewerMedia.querySelector('#btnWalkthrough');
+        const canvaPanel = viewerMedia.querySelector('#canvaPanel');
+        const walkthroughPanel = viewerMedia.querySelector('#walkthroughPanel');
+
+        btnCanva.addEventListener('click', () => {
+          canvaPanel.classList.remove('hidden');
+          walkthroughPanel.classList.add('hidden');
+          btnCanva.classList.add('active');
+          btnCanva.setAttribute('aria-pressed', 'true');
+          btnWalkthrough.classList.remove('active');
+          btnWalkthrough.setAttribute('aria-pressed', 'false');
+        });
+        btnWalkthrough.addEventListener('click', () => {
+          walkthroughPanel.classList.remove('hidden');
+          canvaPanel.classList.add('hidden');
+          btnWalkthrough.classList.add('active');
+          btnWalkthrough.setAttribute('aria-pressed', 'true');
+          btnCanva.classList.remove('active');
+          btnCanva.setAttribute('aria-pressed', 'false');
+        });
+
+      } else if (media === 'video') {
         viewerMedia.innerHTML = `
           <div class="media-frame">
             <iframe src="${src}" title="${work}" frameborder="0" allowfullscreen></iframe>
           </div>`;
       } else if (media === 'iframe') {
+        const altLeft = button.dataset.altLeft || '';
+        const altRight = button.dataset.altRight || '';
+        const altBlock = (altLeft || altRight) ? `
+          <div class="juxtapose-alt-block">
+            ${altLeft ? `<div class="juxtapose-alt-col"><p class="juxtapose-alt-label">Left image</p><p class="juxtapose-alt-text">${altLeft}</p></div>` : ''}
+            ${altRight ? `<div class="juxtapose-alt-col"><p class="juxtapose-alt-label">Right image</p><p class="juxtapose-alt-text">${altRight}</p></div>` : ''}
+          </div>` : '';
         viewerMedia.innerHTML = `
-          <div class="media-frame">
-            <iframe frameborder="0" class="juxtapose" width="100%" height="1000" src="${src}" title="${work}" allowfullscreen></iframe>
-          </div>`;
+          <div class="juxtapose-wrapper">
+            <iframe frameborder="0" class="juxtapose" src="${src}" title="${work}" allowfullscreen></iframe>
+          </div>
+          ${altBlock}`;
       } else {
         viewerMedia.innerHTML = `
           <div class="media-frame">
@@ -560,9 +630,9 @@
           </div>`;
       }
 
-      // Audio description
+      // Audio description (not for canva — it's embedded inside the walkthrough panel instead)
       const audioDesc = button.dataset.audioDesc || '';
-      if (audioDesc) {
+      if (audioDesc && media !== 'canva') {
         const audioDescEl = document.createElement('div');
         audioDescEl.className = 'audio-desc-block';
         audioDescEl.innerHTML = `
@@ -747,6 +817,125 @@
     .transcript-col { flex: 1; }
     .transcript-lang-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #575757; margin-bottom: 0.6rem; }
     .transcript-lines p { font-size: 0.95rem; line-height: 1.7; margin: 0 0 0.3rem; color: #222; }
+
+    /* Visually hidden utility — accessible but invisible */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Canva / walkthrough toggle bar */
+    .canva-toggle-bar {
+      display: flex;
+      gap: 0;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      overflow: hidden;
+      width: fit-content;
+    }
+    .canva-toggle-btn {
+      padding: 0.45rem 1.1rem;
+      font-size: 0.82rem;
+      font-family: "ff-info-display-web-pro", sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: none;
+      background: #f5f5f5;
+      color: #555;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .canva-toggle-btn + .canva-toggle-btn {
+      border-left: 1px solid #ccc;
+    }
+    .canva-toggle-btn.active {
+      background: #222;
+      color: #fff;
+    }
+    .canva-toggle-btn:hover:not(.active) {
+      background: #e0e0e0;
+      color: #222;
+    }
+
+    .walkthrough-heading {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: "ff-info-display-web-pro", sans-serif;
+      margin: 0 0 0.75rem;
+      color: #222;
+    }
+    .walkthrough-placeholder {
+      font-size: 0.95rem;
+      color: #777;
+      font-family: "ff-info-display-web-pro", sans-serif;
+      padding: 1rem 0;
+    }
+    /* Fixed-height scrollable Canva box — matches other artists media height */
+    .canva-scroll-box {
+      width: 100%;
+      height: 560px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
+      border: 1px solid #ddd;
+      background: #fff;
+    }
+    .canva-scroll-box iframe {
+      width: 100%;
+      height: 945px;
+      border: none;
+      display: block;
+    }
+    /* Juxtapose — aspect-ratio wrapper eliminates black gap */
+    .juxtapose-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 50%; /* slightly less than 16:9 to tighten bottom gap */
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .juxtapose-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .juxtapose-alt-block {
+      display: flex;
+      gap: 2rem;
+      margin-top: 0.4rem;
+      padding-top: 0;
+      font-family: "ff-info-display-web-pro", sans-serif;
+    }
+    .juxtapose-alt-col { flex: 1; }
+    .juxtapose-alt-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #575757;
+      margin: 0 0 0.4rem;
+    }
+    .juxtapose-alt-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #222;
+      margin: 0;
+      font-style: italic;
+    }
   </style>
 </body>
 </html>

@@ -2308,8 +2308,6 @@ h1 {
   margin-top: 6px;
 }
 
-/* ---------- COLLAGE IN MAIN VIEWER ---------- */
-
 .viewer-collage {
   flex: 1;
   border: 2px solid #000;
@@ -2515,7 +2513,6 @@ h1 {
   height: 22px;
 }
 
-/* ----- Artist page cleanup ----- */
 .retro-search-row {
   gap: 10px;
 }
@@ -2647,8 +2644,6 @@ h1 {
   }
 }
 
-
-/* ----- Updated single-column artist detail layout ----- */
 .viewer-media {
   margin-top: 18px;
 }
@@ -2679,8 +2674,6 @@ h1 {
   margin-top: 28px;
 }
 
-
-/* ----- Final interphase artist page refinement ----- */
 .artist-page-logo-wrap {
   display: block;
   margin: 10px 0 6px 14px;
