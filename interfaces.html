@@ -169,7 +169,7 @@
 
             <em>Bubble</em>, a short film created by Joanne Huang, explores themes of memory, dreaming, and ephemerality. Inspired by the K-pop girl group NewJeans and their music video Ditto, Huang takes inspiration from the character Heesoo, who is created to represent the fans navigating feelings of longing and imagined connection with idol figures. She uses this idea as a starting point to reflect on her own childhood, when imagination played a strong role in shaping how she saw the future and herself as an adult. Huang suggests that imagination is delicate, much like a bubble, easily formed but just as easily broken.
 
-            Through Bubble, Huang reflects on the fragility of memory, particularly from a child's perspective. This project possesses a transitioning viewpoint in which past, present blurs together, echoing the transient nature of bubbles. Smaller bubbles last only a moment, while bigger ones linger. This metaphor highlights how certain childhood memories could have more impact than others and remain vivid over time, while others fade or become distorted. Huang creates a space where imagination and lived experience intersect, inviting the audience to reflect on their own emotional attachments and recollections through her story in Kamakura, Japan.
+            Through <em>Bubble</em>, Huang reflects on the fragility of memory, particularly from a child's perspective. This project possesses a transitioning viewpoint in which past, present blurs together, echoing the transient nature of bubbles. Smaller bubbles last only a moment, while bigger ones linger. This metaphor highlights how certain childhood memories could have more impact than others and remain vivid over time, while others fade or become distorted. Huang creates a space where imagination and lived experience intersect, inviting the audience to reflect on their own emotional attachments and recollections through her story in Kamakura, Japan.
 
             About the Artist
 
@@ -653,17 +653,17 @@
         transcriptEl.className = 'sira-transcript';
         transcriptEl.innerHTML = `
           <summary class="transcript-header">
-            <h3 class="transcript-title">Transcript</h3>
+            <h3 class="transcript-title">Lyrics Transcript</h3>
           </summary>
           <div class="transcript-body both-mode">
             ${koLines.length ? `
             <div class="transcript-col">
-              <p class="transcript-lang-label">Korean-language transcript</p>
+              <p class="transcript-lang-label">Korean lyrics</p>
               <div class="transcript-lines">${koLines.map(l => `<p>${l}</p>`).join('')}</div>
             </div>` : ''}
             ${enLines.length ? `
             <div class="transcript-col">
-              <p class="transcript-lang-label">English-language transcript</p>
+              <p class="transcript-lang-label">English lyrics</p>
               <div class="transcript-lines">${enLines.map(l => `<p>${l}</p>`).join('')}</div>
             </div>` : ''}
           </div>
