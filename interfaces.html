@@ -141,8 +141,8 @@
             data-scr="https://player.vimeo.com/video/1187155855"
             data-duration="00:20"
             data-thumb="ivan.png"
-            data-alt-left="Runic letters float above the text, &quotThe World Runes.&quot Behind the semi-transparent background are colossal roots native to this planet that stretch beyond the sky in the distance and a cliff in the foreground. Cliffs overhang from the left and right."
-            data-alt-right="Runic letters are inscripted onto a floating rock that uphold the magic in this &quotworld.&quot Below them reads the title, &quotThe World Runes.&quot Colossal roots native to this planet stretch beyond the sky in the distance. Cliffs overhang from the left and right."
+            data-alt-left="Runic letters are inscripted onto a floating rock that read &quotWorld.&quot The centerpiece upholds the magic in this world. Behind the semi-transparent background are colossal roots native to this planet that stretch beyond the sky in the distance and a cliff in the foreground. Cliffs overhang from the left and right."
+            data-alt-right="Runic letters are inscripted onto a monolith that uphold the magic in this &quotWorld.&quot A rift cuts the sky open revealing a nubula like space in the sky. Rocky structures appear in the distant background as well as a large planet that can be seen within the atmosphere."
             data-desc="
             About the Work
             
@@ -239,10 +239,10 @@
             data-page="interfaces.html"
             data-work="Bocanada"
             data-media="video"
-            data-duration="01:01"
+            data-duration="01:47"
             data-alt="An abstract, pixelated view of gates and lights inside of the gates."
             data-audio-desc="Sounds from the NYC subway from afar. Screechy metal noises. Lo-fi trip hop drums slightly dimmed."
-            data-src="https://player.vimeo.com/video/1188275510"
+            data-src="https://player.vimeo.com/video/1187549309"
             data-thumb="andres.png"
             data-desc="About the Work
 
@@ -310,11 +310,11 @@
             data-floor="interfaces"
             data-page="interfaces.html"
             data-work="Pictures of Life"
-            data-media="video"
+            data-media="game-video"
             data-duration="02:30"
             data-alt="Spacious, pixelated room with a brown wooden floor and red wallpaper. There is one painting hanging from the wall and a computer monitor on the bottom left corner of the room."
-            data-audio-desc="Keyboard typing sounds play when text shows for character narration. A low wind is in the background. Doors opening and closing can be heard when moving between rooms. When interacting with items, a click noise is played."
             data-src="https://player.vimeo.com/video/1187155848"
+            data-game-src="https://itch.io/embed/4534175"
             data-thumb="george.png"
             data-desc="About the Work
             
@@ -536,7 +536,7 @@
       artworkName.textContent = work;
       artistName.textContent = 'by ' + name;
       const duration = button.dataset.duration || '';
-      const mediaLabel = media === 'video' ? 'Video' : media === 'image' ? 'Image' : media === 'iframe' ? 'Interactive Image & Video' : media === 'canva' ? 'Interactive Website & Video' : media || '';
+      const mediaLabel = media === 'video' ? 'Video' : media === 'image' ? 'Image' : media === 'iframe' ? 'Interactive Image & Video' : media === 'canva' ? 'Interactive Website & Video' : media === 'game-video' ? 'Interactive Game & Video' : media || '';
       const metaParts = [mediaLabel, duration].filter(Boolean);
       document.getElementById('artworkMeta').textContent = metaParts.join(' | ');
 
@@ -625,6 +625,47 @@
           btnWalkthrough.setAttribute('aria-pressed', 'true');
           btnCanva.classList.remove('active');
           btnCanva.setAttribute('aria-pressed', 'false');
+        });
+
+      } else if (media === 'game-video') {
+        const gameSrc = button.dataset.gameSrc || '';
+        viewerMedia.innerHTML = `
+          <div class="canva-toggle-bar" role="group" aria-label="View switcher">
+            <button class="canva-toggle-btn active" id="btnVideo" aria-pressed="true">Video</button>
+            <button class="canva-toggle-btn" id="btnGame" aria-pressed="false">Play Game</button>
+          </div>
+          <div id="videoPanel">
+            <div class="media-frame">
+              <iframe src="${src}" title="${work}" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div id="gamePanel" class="hidden">
+            <div class="itch-embed-wrap">
+              <iframe height="167" width="552" src="${gameSrc}" frameborder="0" allowfullscreen title="${work} — Play on itch.io">
+                <a href="https://retrof1sh.itch.io/pictures-of-life">Pictures Of Life by RetroF1sh</a>
+              </iframe>
+            </div>
+          </div>
+        `;
+        const btnVideo = viewerMedia.querySelector('#btnVideo');
+        const btnGame = viewerMedia.querySelector('#btnGame');
+        const videoPanel = viewerMedia.querySelector('#videoPanel');
+        const gamePanel = viewerMedia.querySelector('#gamePanel');
+        btnVideo.addEventListener('click', () => {
+          videoPanel.classList.remove('hidden');
+          gamePanel.classList.add('hidden');
+          btnVideo.classList.add('active');
+          btnVideo.setAttribute('aria-pressed', 'true');
+          btnGame.classList.remove('active');
+          btnGame.setAttribute('aria-pressed', 'false');
+        });
+        btnGame.addEventListener('click', () => {
+          gamePanel.classList.remove('hidden');
+          videoPanel.classList.add('hidden');
+          btnGame.classList.add('active');
+          btnGame.setAttribute('aria-pressed', 'true');
+          btnVideo.classList.remove('active');
+          btnVideo.setAttribute('aria-pressed', 'false');
         });
 
       } else if (media === 'video') {
@@ -944,6 +985,18 @@
       padding: 1rem 0;
     }
     
+    .itch-embed-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 1rem 0;
+    }
+    .itch-embed-wrap iframe {
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      max-width: 100%;
+    }
+
     .canva-scroll-box {
       width: 100%;
       height: 560px;
