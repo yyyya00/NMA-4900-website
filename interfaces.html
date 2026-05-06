@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/dwz0gvg.css">
   <link rel="stylesheet" href="ourchive.css" />
 </head>
+
 <body class="retro-page">
   <div class="retro-window">
 
@@ -314,7 +315,7 @@
             data-duration="02:30"
             data-alt="Spacious, pixelated room with a brown wooden floor and red wallpaper. There is one painting hanging from the wall and a computer monitor on the bottom left corner of the room."
             data-src="https://player.vimeo.com/video/1187155848"
-            data-game-src="https://itch.io/embed/4534175"
+            data-game-src="https://itch.io/embed-upload/17434223?color=ef9898" 
             data-thumb="george.png"
             data-desc="About the Work
             
@@ -522,6 +523,13 @@
       return parts;
     }
 
+    function scaleGame() {
+      const scaler = document.getElementById('scaler');
+      const ratio = scaler.parentElement.offsetWidth / 1000;
+      scaler.style.transform = `scale(${ratio})`;
+      scaler.parentElement.style.height = (700 * ratio) + 'px';
+    }
+
     function renderArtist(button) {
       artistButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
@@ -639,11 +647,14 @@
               <iframe src="${src}" title="${work}" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
+          <span class="visually-hidden">This is a Unity game in an iframe. It is not screen reader accessible. A video walkthrough is provided separately.</span>
           <div id="gamePanel" class="hidden">
             <div class="itch-embed-wrap">
-              <iframe height="167" width="552" src="${gameSrc}" frameborder="0" allowfullscreen title="${work} — Play on itch.io">
-                <a href="https://retrof1sh.itch.io/pictures-of-life">Pictures Of Life by RetroF1sh</a>
-              </iframe>
+              <div id="scaler">
+                <iframe width="1000" height="700" src="${gameSrc}" frameborder="0" allowfullscreen title="${work} — Play on itch.io">
+                  <a href="https://retrof1sh.itch.io/pictures-of-life-browser">Pictures Of Life by RetroF1sh</a>
+                </iframe>
+              </div>
             </div>
           </div>
         `;
@@ -666,8 +677,9 @@
           btnGame.setAttribute('aria-pressed', 'true');
           btnVideo.classList.remove('active');
           btnVideo.setAttribute('aria-pressed', 'false');
+          scaleGame();
         });
-
+        window.addEventListener('resize', scaleGame);
       } else if (media === 'video') {
         viewerMedia.innerHTML = `
           <div class="media-frame">
@@ -984,17 +996,19 @@
       font-family: "ff-info-display-web-pro", sans-serif;
       padding: 1rem 0;
     }
-    
-    .itch-embed-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 1rem 0;
+
+    /* ---------- GAME ITCH EMBED ---------- */
+    #scaler {
+      position: relative;
+      width: 1000px;
+      height: 700px;
+      transform-origin: top left;
     }
-    .itch-embed-wrap iframe {
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      max-width: 100%;
+
+    .itch-embed-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
     }
 
     .canva-scroll-box {
